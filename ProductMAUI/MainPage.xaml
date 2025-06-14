@@ -2,24 +2,74 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProductMAUI.MainPage"
-              xmlns:vm="ProductMAUI.ViewModels.MainViewModel">
+             xmlns:vm="ProductMAUI.ViewModels.MainViewModel"
+             Title="Product List"
+             BackgroundColor="White">
 
-    <CollectionView ItemsSource="{Binding Products}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <VerticalStackLayout Padding="10">
-                    <Label Text="{Binding Title}" FontSize="20" />
-                    <Label Text="{Binding Price, StringFormat='Price: {0:C}'}" FontSize="16" TextColor="Gray" />
-                    <Label Text="{Binding Description}"  FontSize="16" TextColor="Gray" />
-                    <Label Text="{Binding Category}"  FontSize="16" TextColor="Gray" />
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
 
-                    <!-- Edit Button -->
-                    <Button Text="Edit" 
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=EditCommand}" 
-                            CommandParameter="{Binding Id}" />
-                </VerticalStackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <ScrollView>
+        <CollectionView ItemsSource="{Binding Products}"
+                        Margin="10"
+                        SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="{Binding ColumnSpan}" />
+            </CollectionView.ItemsLayout>
 
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="10"
+                          
+                           Margin="5"
+                           Padding="10"
+                           HasShadow="True"
+                           BackgroundColor="#FAFAFA">
+                        <VerticalStackLayout Spacing="12" VerticalOptions="StartAndExpand">
+                            <!-- Product Image -->
+                            <Image Source="{Binding Image}" 
+                                   Aspect="AspectFill" 
+                                   HeightRequest="200" 
+                                   WidthRequest="200" 
+                                   HorizontalOptions="Center" 
+                                   Margin="0,0,0,8"/>
+
+                            <!-- Product Title -->
+                            <Label Text="{Binding Title}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="Black"
+                                   HorizontalOptions="Center"
+                                   LineBreakMode="TailTruncation" 
+                                   MaxLines="2"/>
+
+                            <!-- Product Price -->
+                            <Label Text="{Binding Price, StringFormat='Price: {0:C}'}"
+                                   FontSize="16"
+                                   TextColor="#666"
+                                   HorizontalOptions="Center" 
+                                   LineBreakMode="TailTruncation" />
+
+                            <!-- Product Description -->
+                            <Label Text="{Binding Description}"
+                                   FontSize="16"
+                                   TextColor="#666"
+                                   HorizontalOptions="Center" 
+                                   LineBreakMode="TailTruncation" />
+
+                            <!-- Edit Button -->
+                            <Button Text="View Product"
+                                    FontSize="14"
+                                    CornerRadius="6"
+                                    BackgroundColor="#007AFF"
+                                    HorizontalOptions="FillAndExpand"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=EditCommand}"
+                                    CommandParameter="{Binding Id}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
 </ContentPage>

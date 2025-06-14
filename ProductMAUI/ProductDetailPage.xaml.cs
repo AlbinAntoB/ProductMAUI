@@ -15,5 +15,6 @@ public partial class ProductDetailPage : ContentPage
         ProductTitle.Text = product.Title;
         ProductPrice.Text = $"Price: {product.Price:C}";
         ProductDescription.Text = product.Description;
+        ProductImage.Source = product.Image;
     }
 }

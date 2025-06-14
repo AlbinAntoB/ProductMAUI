@@ -2,10 +2,36 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProductMAUI.ProductDetailPage"
-             Title="ProductDetailPage">
-    <StackLayout Padding="10">
-        <Label x:Name="ProductTitle" FontSize="24" />
-        <Label x:Name="ProductPrice" FontSize="20" TextColor="Gray" />
-        <Label x:Name="ProductDescription" FontSize="16" TextColor="DarkGray" />
-    </StackLayout>
+             Title="Product Detail Page"
+             BackgroundColor="White">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="15">
+            <!-- Image of the product -->
+            <Image x:Name="ProductImage" 
+                   Aspect="AspectFill"
+                   HeightRequest="200" 
+                   WidthRequest="200" 
+                   HorizontalOptions="Center" 
+                   Margin="0,0,0,8"/>
+
+            <!-- Product Title -->
+            <Label x:Name="ProductTitle" 
+                   FontSize="24" 
+                   TextColor="Black" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" />
+
+            <!-- Product Price -->
+            <Label x:Name="ProductPrice" 
+                   FontSize="20" 
+                   TextColor="Gray" 
+                   HorizontalOptions="Center" />
+
+            <!-- Product Description -->
+            <Label x:Name="ProductDescription" 
+                   FontSize="16" 
+                   TextColor="DarkGray" 
+                   HorizontalOptions="Center" />
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
