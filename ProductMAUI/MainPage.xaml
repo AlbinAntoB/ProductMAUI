@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProductMAUI.MainPage"
+              xmlns:vm="ProductMAUI.ViewModels.MainViewModel">
+
+    <CollectionView ItemsSource="{Binding Products}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <VerticalStackLayout Padding="10">
+                    <Label Text="{Binding Title}" FontSize="20" />
+                    <Label Text="{Binding Price, StringFormat='Price: {0:C}'}" FontSize="16" TextColor="Gray" />
+                    <Label Text="{Binding Description}"  FontSize="16" TextColor="Gray" />
+                    <Label Text="{Binding Category}"  FontSize="16" TextColor="Gray" />
+
+                    <!-- Edit Button -->
+                    <Button Text="Edit" 
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=EditCommand}" 
+                            CommandParameter="{Binding Id}" />
+                </VerticalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>
